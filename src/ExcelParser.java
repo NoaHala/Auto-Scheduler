@@ -7,13 +7,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 
+
 /**
  * A utility class for extracting and parsing data from Excel files.
  */
+
 public class ExcelParser {
 
     // todo - for now we assume that all the info about a student is in one excel table
     // todo - we also ignore changes about the info from the teacher
+
     /**
      * A method that extract all the relevant information about the students and their available
      * time slots from the Excel table into designated data structures.
@@ -22,6 +25,7 @@ public class ExcelParser {
      * @param timeSlotsTable - the schedule's timeSlots Table map.
      * @param filePath - the path for the student excel.
      */
+
     public void studentsExcelParser(HashSet<Student> studentSet,
                                     HashMap<DayHourKey, TimeSlot> timeSlotsTable,
                                     String filePath) {
@@ -59,6 +63,7 @@ public class ExcelParser {
         }
     }
 
+
     /**
      * Parses a row from the Excel sheet to extract a student's time slot availability
      * and updates the provided `timeSlotsTable` accordingly.
@@ -72,6 +77,7 @@ public class ExcelParser {
      * @param timeSlotsTable  A map linking `DayHourKey` to `TimeSlot`, representing the schedule.
      * @param student         The `Student` object to be added to the relevant time slots.
      */
+
     private void timeSlotsStringParser(Row row, HashMap<DayHourKey, TimeSlot> timeSlotsTable, Student student){
         // Map each day's availability
         for (int col = 3; col < row.getLastCellNum(); col++) {
@@ -97,3 +103,4 @@ public class ExcelParser {
         }
     }
 }
+

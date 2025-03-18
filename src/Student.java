@@ -54,6 +54,7 @@ public class Student {
     public void removeAvailableSlot(){
         remainingAvailableSlots--;
     }
+    public int getRemainingAvailableSlotsNum(){ return remainingAvailableSlots; }
 
     public void increaseLessonsCounter(){
         numOfLessonsThisWeek++;

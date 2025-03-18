@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Represents a time slot in a schedule, including the day, start and end times,
@@ -61,7 +62,19 @@ public class TimeSlot {
         studentsCounter++;
     }
 
+    public void chooseStudent() {
 
+
+    }
+
+    public void sortStudentsByAvailability() {
+        this.studentsAvailable.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                return Integer.compare(s1.getRemainingAvailableSlotsNum(), s2.getRemainingAvailableSlotsNum());
+            }
+        });
+    }
     public void setChosenStudent(Student chosenStudent) {
         this.chosenStudent = chosenStudent;
     }
