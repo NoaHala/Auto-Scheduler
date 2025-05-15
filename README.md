@@ -10,16 +10,16 @@ Although still in early development, the core system is already up and running, 
 Given a list of students and their availability, the system builds a schedule that:
 
 ✔️ Assigns each student up to **2 lessons per week**  
-✔️ Makes sure **no student gets more than 1 lesson per day**  
-✔️ **Maximizes** the number of lessons overall  
-✔️ Encourages **fairness** — better to give everyone something than a few everything  
-✔️ Works with **custom time windows** for each student
+✔️ Ensures **no student gets more than 1 lesson per day**  
+✔️ **Maximizes** the total number of lessons  
+✔️ Encourages **fairness** — it's better to give everyone something than to give a few everything 
+✔️ Supports **custom time windows** for each student
 
 
 ## How It Works
 
 The problem is modeled as a **min-cost network**, using **Google OR-Tools** in Java.  
-I also added a **virtual sink node** to allow flexible total flow — so the system finds the optimal number of lessons automatically, instead of fixing it in advance.
+I also added a **virtual sink node** to allow flexible total flow — so the system can find the optimal number of lessons automatically, without having to predefine it.
 
 ---
 
