@@ -1,4 +1,5 @@
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.*;
 
 /**
  * Represents a single student.
@@ -11,10 +12,7 @@ public class Student {
     private final String name;
     private final Vehicle vehicle;
     private final int priority;
-    private int numOfLessonsThisWeek = 0;
-    private int remainingAvailableSlots = 0;
-    private boolean isBlocked = false;
-    private final HashMap<Day, Boolean> hasLessonThisDay = new HashMap<>();
+    private HashSet<TimeSlot> availableTimeSlots;
 
 
     /**  CONSTRUCTORS  **/
@@ -22,17 +20,16 @@ public class Student {
         this.name = name;
         this.vehicle = vehicle;
         this.priority = priority;
-        for (Day day : Day.values()) {
-            hasLessonThisDay.put(day, false);
-        }
+        this.availableTimeSlots = new HashSet<>();
     }
 
     public Student(String name, int priority) {
         this.name = name;
         this.vehicle = new Vehicle() {};
         this.priority = priority;
-        this.numOfLessonsThisWeek = 0;
-        this.remainingAvailableSlots = 0;
+        this.availableTimeSlots = new HashSet<>();
+        //this.numOfLessonsThisWeek = 0;
+        //this.remainingAvailableSlots = 0;
     }
 
     /**  GETTERS  **/
@@ -45,39 +42,28 @@ public class Student {
     public int getPriority() {
         return priority;
     }
-    public int getNumOfLessonsThisWeek() { return numOfLessonsThisWeek; }
+    public HashSet<TimeSlot> getAvailableTimeSlots() {
+        return availableTimeSlots;
+    }
+
 
     /**  OTHER METHODS  **/
-    public void addAvailableSlot(){
-        remainingAvailableSlots++;
-    }
-    public void removeAvailableSlot(){
-        remainingAvailableSlots--;
-    }
-    public int getRemainingAvailableSlotsNum(){ return remainingAvailableSlots; }
 
-    public void increaseLessonsCounter(){
-        numOfLessonsThisWeek++;
+    public void addAvailableTimeSlot(TimeSlot timeSlot){
+        this.availableTimeSlots.add(timeSlot);
     }
 
-    public void blockStudent(){
-        this.remainingAvailableSlots += Constants.BIG_ARBITRARY_NUM;
-        this.isBlocked = true;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return Objects.equals(this.getName(), student.getName());
     }
 
-    /*public void blockStudent(){
-        this.isBlocked = true;
-    }*/
-
-    public boolean getIsBlocked() {
-        return isBlocked;
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 
-    public boolean hasLessonThisDay(Day day){
-        return this.hasLessonThisDay.get(day);
     }
-
-    public void addLessonThisDay(Day day){
-        this.hasLessonThisDay.put(day, true);
-    }
-}

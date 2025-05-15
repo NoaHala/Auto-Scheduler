@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Represents a time slot in a schedule, including the day, start and end times,
@@ -18,7 +17,7 @@ public class TimeSlot {
     private String endingHour;
     private int studentsCounter;
     private ArrayList<Student> studentsAvailable;
-    private Student chosenStudent;
+    private Student chosenStudent = null;
 
 
     /**  CONSTRUCTOR  **/
@@ -40,6 +39,8 @@ public class TimeSlot {
     public int getStudentsCounter() {
         return studentsCounter;
     }
+
+    //todo - why is it array list and not set?
     public ArrayList<Student> getStudentsAvailable() {return studentsAvailable;}
 
     /**
@@ -48,11 +49,13 @@ public class TimeSlot {
      */
     @Override
     public String toString() {
+        String name = "unknown";
+        if (chosenStudent != null) {name = chosenStudent.getName();}
         return "TimeSlot{" +
                 "day=" + day +
                 ", beginningHour=" + beginningHour +
                 ", endingHour=" + endingHour +
-                ", studentsCounter=" + studentsCounter +
+                ", chosen student=" + name +
                 '}';
     }
 
@@ -62,20 +65,11 @@ public class TimeSlot {
         studentsCounter++;
     }
 
-    public void chooseStudent() {
-
-
-    }
-
-    public void sortStudentsByAvailability() {
-        this.studentsAvailable.sort(new Comparator<Student>() {
-            @Override
-            public int compare(Student s1, Student s2) {
-                return Integer.compare(s1.getRemainingAvailableSlotsNum(), s2.getRemainingAvailableSlotsNum());
-            }
-        });
-    }
     public void setChosenStudent(Student chosenStudent) {
         this.chosenStudent = chosenStudent;
+    }
+
+    public Student getChosenStudent() {
+        return chosenStudent;
     }
 }

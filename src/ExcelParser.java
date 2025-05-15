@@ -96,7 +96,8 @@ public class ExcelParser {
 
                     if (timeSlot != null && timeSlot.getBeginningHour().equals(startTime)) {
                         timeSlot.addAvailableStudent(student);
-                        student.addAvailableSlot();
+                        student.addAvailableTimeSlot(timeSlot);
+                        //student.addAvailableSlot();
                     }
                 }
             }

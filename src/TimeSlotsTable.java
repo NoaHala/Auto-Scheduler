@@ -1,33 +1,5 @@
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.*;
-
-/*public class TimeSlotsTable {
-    private HashMap<DayHourKey, TimeSlot> timeSlotMap;
-    private PriorityQueue<TimeSlot> sortedTimeSlots;
-
-
-    public TimeSlotsTable() {
-        timeSlotMap = new HashMap<>();
-        sortedTimeSlots = new PriorityQueue<>(Comparator.comparingInt(TimeSlot::getStudentsCounter));
-    }
-
-    public void addTimeSlot(TimeSlot timeSlot) {
-        DayHourKey key = new DayHourKey(timeSlot.getDay(), timeSlot.getBeginningHour());
-        timeSlotMap.put(key, timeSlot);
-        sortedTimeSlots.add(timeSlot);
-    }*/
-
-    /**
-     * ----------------------------------------------------------
-     * ----------------------------------------------------------
-     * ----------------------------------------------------------
-     */
-
 
 public class TimeSlotsTable {
     private HashMap<DayHourKey, TimeSlot> timeSlots;
@@ -120,15 +92,6 @@ public class TimeSlotsTable {
             sb.append(slot).append("\n");
         }
         return sb.toString();
-    }
-
-    public void sortTimeSlotsByStudentsCounter() {
-        listOfTimeSlots.sort(new Comparator<TimeSlot>() {
-            @Override
-            public int compare(TimeSlot slot1, TimeSlot slot2) {
-                return Integer.compare(slot1.getStudentsCounter(), slot2.getStudentsCounter());
-            }
-        });
     }
 }
 
